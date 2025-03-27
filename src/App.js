@@ -5,7 +5,7 @@ import Home from "./pages/Home/Home";
 import Mypage from "./pages/Mypage/Mypage";
 import Diffuser from "./pages/ProductPage/Diffuser";
 import Perfume from "./pages/ProductPage/Perfume";
-import New from "./pages/ProductPage/Perfume";
+import New from "./pages/ProductPage/New";
 
 function App() {
   return (
