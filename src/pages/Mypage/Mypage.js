@@ -1,12 +1,12 @@
 import React from 'react';
 
-const Mypage=() => {
+const Mypage = () => {
     return(
         <div>
-            <h1>야 너두 사장될 수 있?군</h1>
-            <p>멋쟁이 사자처럼 13기</p>
-            </div>
-    )
-}
+            <h1>야 너두 사자될 수 있어!</h1>
+            <h2>멋쟁이 나처럼 13기</h2>
+        </div>
+    );
+};
 
 export default Mypage;

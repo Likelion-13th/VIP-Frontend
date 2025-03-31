@@ -3,10 +3,10 @@ import React from 'react';
 const New = () => {
     return(
         <div>
-            <h1>야 너두 사장????!!</h1>
-            <p>멋쟁이 나처럼 13기</p>
+            <h1>멋쟁이 토마토</h1>
+            <p>울퉁불퉁 멋진 몸매에에</p>
         </div>
-    )
-}
+    );
+};
 
 export default New;
