@@ -12,20 +12,21 @@
     display: flex;
     position: absolute;
     width: 100%;
+    background-color: rgba(58, 58, 58, 0.55);
     box-sizing: border-box;
     z-index: 10;
     justify-content:space-between;
-    background-color: rgba(58, 58, 58, 0.55);
-    padding: 46px 110px;
-    margin: 105px 0px;
+    padding: 23px 45px;
+    margin: 52px 0px;
+    transition: background-color 0.3s ease;
 }
 
 .header-section {
     display: flex;
     align-items: center;
-    font-size: 60px;
+    font-size: 30px;
     font-weight: 400px;
-    gap: 12px; 
+    gap: 10px; 
 }
 
 .info2-text-1 {
@@ -36,16 +37,19 @@
 .header-right {
     display: flex;
     font-family: "kaiseiDecol-Regular";
-    gap: 80px;
+    gap: 39px;
 }
 
-.header-right a {
+.header-container.mypage-banner {
+    background-color: rgba(58, 58, 58, 1);
+}
+.header-section a {
     text-decoration: none;
     color: #9F8383;
 }
 
-.header-right a.active {
+.header-section a.active {
     color: white;
     text-decoration: none;
   }
-  
+

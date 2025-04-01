@@ -6,11 +6,13 @@ const Header = () => {
     const location = useLocation();
     const currentPage = location.pathname;
     return(
-        <div className="header-container">
+            <div className={`header-container ${currentPage === "/Mypage" ? "mypage-banner" : ""}`}>
             <div className="header-section">
                 <div className="header-left">
                     <div className="info2-text-wrapper">
-                        <div className="info2-text-1">Likelion</div>
+                        <div className="info2-text-1">
+                            <Link to="/Home" className={currentPage==="/" ? "active" : ""}>Likelion</Link>
+                        </div>
                     </div>
                 </div>
             </div>
