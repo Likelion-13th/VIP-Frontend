@@ -11,7 +11,7 @@ const Header = () => {
                 <div className="header-left">
                     <div className="info2-text-wrapper">
                         <div className="info2-text-1">
-                            <Link to="/Home" className={currentPage==="/" ? "active" : ""}>Likelion</Link>
+                            <Link to="/" className={currentPage==="/" ? "active" : ""}>Likelion</Link>
                         </div>
                     </div>
                 </div>

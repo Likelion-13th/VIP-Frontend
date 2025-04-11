@@ -2,6 +2,7 @@ import React from "react";
 import './App.css';
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import Toolbar from "./components/Toolbar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home/Home";
@@ -14,9 +15,7 @@ function App() {
   return (
     <Router>
       <Header />
-      <div className="main-image">
-        <img src="/images/main_image.png" alt="메인 이미지" />
-      </div>
+      <Toolbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/mypage" element={<Mypage />} />

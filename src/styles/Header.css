@@ -16,8 +16,8 @@
     box-sizing: border-box;
     z-index: 10;
     justify-content:space-between;
+    margin: 0px 0px;
     padding: 23px 45px;
-    margin: 52px 0px;
     transition: background-color 0.3s ease;
 }
 
@@ -42,6 +42,7 @@
 
 .header-container.mypage-banner {
     background-color: rgba(58, 58, 58, 1);
+    margin: 0px 0px;
 }
 .header-section a {
     text-decoration: none;
