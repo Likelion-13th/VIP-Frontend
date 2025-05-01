@@ -10,6 +10,7 @@
 
 .info-container{
     display: flex;
+    justify-content: space-between;
     margin: 128px 164px;
     font-family: "NanumMyeongjo";
     align-items: center;
