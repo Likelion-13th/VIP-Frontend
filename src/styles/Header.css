@@ -10,21 +10,21 @@
 
 .header-container {
     display: flex;
-    position: absolute;
+    align-items: center;
+    position: fixed;
     width: 100%;
     background-color: rgba(58, 58, 58, 0.55);
     box-sizing: border-box;
-    z-index: 10;
+    z-index: 1;
     justify-content:space-between;
-    margin: 0px 0px;
-    padding: 23px 45px;
+    padding: 24px 30px;
+    top: 0;
     transition: background-color 0.3s ease;
 }
 
 .header-section {
-    display: flex;
-    align-items: center;
-    font-size: 30px;
+    font-family: 'kaseiDecol-Regular';
+    font-size: 25px;
     font-weight: 400px;
     gap: 10px; 
 }
@@ -42,7 +42,6 @@
 
 .header-container.mypage-banner {
     background-color: rgba(58, 58, 58, 1);
-    margin: 0px 0px;
 }
 .header-section a {
     text-decoration: none;

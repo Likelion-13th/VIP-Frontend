@@ -1,10 +1,18 @@
 import React from 'react';
+import '../../styles/Mypage.css';
+import Profile from './Profile';
+import Status from './Status';
+import Address from './Address';
+import History from './History';
+
 
 const Mypage = () => {
     return(
-        <div>
-            <h1>야 너두 사자될 수 있어!</h1>
-            <p>처음처럼 13기</p>
+        <div className='page-container'>
+            <Profile/>
+            <Status/>
+            <Address/>
+            <History/>
         </div>
     );
 };
