@@ -51,10 +51,12 @@ const Address = () => {
             </div>
             <div className="address-section">
                 <div className="address-detail">
+                    
                     <input 
 		                    className="address-input-detail" 
 			                  value={addressDetail} 
 			                  onChange={handleAddressDetailChange}
+                              type="text" placeholder="상세주소를 입력하세요"
 		                />
                 </div>
                 <div 
