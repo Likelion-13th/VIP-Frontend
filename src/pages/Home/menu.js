@@ -6,7 +6,7 @@ const Menu = () => {
     <div className="menu-container">
         <Link to='/perfume' className="menu-section">
             <img
-                src={`${process.env.PUBLIC_URL}/image/banner_perfume.jpg`}
+                src={`${process.env.PUBLIC_URL}/image/banner_perfume.png`}
                 alt="perfume"
                 className="menu-perfume"
             ></img>
