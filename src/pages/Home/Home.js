@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Menu from './menu';
+import Menu from './Menu';
 import Banner from './Banner';
 import Info from './Info';
 import "./../../styles/Home.css";
@@ -7,7 +7,7 @@ import { useCookies } from 'react-cookie';
 import { useNavigate } from "react-router-dom";
 
 const Home = ({onLoginChange}) => {
-    const [cookies, setCookie] = useCookies(["accessToken"]);
+    const [, setCookie] = useCookies(["accessToken"]);
     const navigate = useNavigate();
 
     useEffect(()=> {
