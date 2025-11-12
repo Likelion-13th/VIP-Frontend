@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Menu from './Menu';
+import Menu from './menu';
 import Banner from './Banner';
 import Info from './Info';
 import "./../../styles/Home.css";
