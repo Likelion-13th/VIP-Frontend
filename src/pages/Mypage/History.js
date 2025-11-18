@@ -1,11 +1,13 @@
 import React from "react";
 
-const History = () => {
+const History = ({ historyData, onCancel }) => {
+  
 
 	// onClick
-	const handleCancel = () => {
-		alert("주문이 취소되었습니다");
-	}
+	const handleCancel = (orderId) => {
+
+    onCancel(orderId);
+	};
 	
   return (
     <div className="history-container-wrap">
@@ -22,98 +24,29 @@ const History = () => {
                         <th>주문 취소</th>
                     </tr>
                 </thead>
+                
                 <tbody>
+                  {historyData.map((order) => (
 		                <tr>
-                        <td>2025-05-01</td>
+                        <td>{order.createdAt.slice(0, 10)}</td>
                         <td>
-                          <div className="history-product">
-                            <img
-                              src={`${process.env.PUBLIC_URL}/image/princess_dress1.jpeg`}
-                              alt="princess_dress"
-                              className="dress_image"
-                            />
-                            <div className="history-img-text">
-                              <div className="history-img-text-1">??? 공주가 입다가 버린 드레스</div>
-                              <div className='history-img-text-1-2'>항대왕국 보물창고</div>
-                            </div>
-                          </div>
+                              <div className="history-img-text-1">{order.itemName}</div>
                         </td>
-                        <td>1</td>
-                        <td>9,999,999,999,999원</td>
-                        <td>배송중</td>
+                        <td>{order.quantity}</td>
+                        <td>{order.totalPrice}</td>
+                        <td>{order.status}</td>
                         <td>
 		                      <div className="history-cancel">
 		                        <div
 		                          className="history-cancel-button"
-		                          onClick={handleCancel}
+		                          onClick={() => handleCancel(order.orderId)}
 		                        >  
 		                          취소
 		                        </div>
 		                      </div>
                         </td>
                     </tr>
-                </tbody>
-                <tbody>
-		                <tr>
-                        <td>2025-05-01</td>
-                        <td>
-                          <div className="history-product">
-                            <img
-                              src={`${process.env.PUBLIC_URL}/image/princess_dress1.jpeg`}
-                              alt="princess_dress"
-                              className="dress_image"
-                            />
-                            <div className="history-img-text">
-                              <div className="history-img-text-1">??? 공주가 입다가 버린 드레스</div>
-                              <div className='history-img-text-1-2'>항대왕국 보물창고</div>
-                            </div>
-                          </div>
-                        </td>
-                        <td>1</td>
-                        <td>9,999,999,999,999원</td>
-                        <td>배송중</td>
-                        <td>
-		                      <div className="history-cancel">
-		                        <div
-		                          className="history-cancel-button"
-		                          onClick={handleCancel}
-		                        >  
-		                          취소
-		                        </div>
-		                      </div>
-                        </td>
-                    </tr>
-                </tbody>
-                <tbody>
-		                <tr>
-                        <td>2025-05-01</td>
-                        <td>
-                          <div className="history-product">
-                            <img
-                              src={`${process.env.PUBLIC_URL}/image/princess_dress1.jpeg`}
-                              alt="princess_dress"
-                              className="dress_image"
-                            />
-                            <div className="history-img-text">
-                              <div className="history-img-text-1">??? 공주가 입다가 버린 드레스</div>
-                              <div className='history-img-text-1-2'>항대왕국 보물창고</div>
-                            </div>
-                          </div>
-                        </td>
-                        <td>1</td>
-                        <td>9,999,999,999,999원</td>
-                        <td>배송중</td>
-                        <td>
-		                      <div className="history-cancel">
-		                        <div
-		                          className="history-cancel-button"
-		                          onClick={handleCancel}
-		                        >  
-		                          취소
-		                        </div>
-		                      </div>
-                        </td>
-                    </tr>
+                  ))}
                 </tbody>
             </table>
         </div>

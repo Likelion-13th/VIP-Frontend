@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Address = () => {
+const Address = ({ handleSave }) => {
 	
 	// useState
   const [zipcode, setZipcode] = useState("");
@@ -10,13 +10,9 @@ const Address = () => {
   // onChange
   const handleAddressDetailChange = (e) => setAddressDetail(e.target.value);
 	
-	// onClick
-	const handleSave = () => {
-		alert("저장");
-	}
 	
-	// openAPI
-	const handleSearchPostcode = () => {
+  // openAPI
+  const handleSearchPostcode = () => {
     new window.daum.Postcode({
       oncomplete: function (data) {
         setZipcode(data.zonecode);
@@ -32,38 +28,37 @@ const Address = () => {
             <div className="address-section">
                 <div className="address-post">
                     <input 
-		                    className="address-input-post" 
-		                    value={zipcode} 
-		                />
+		                className="address-input-post" 
+		                value={zipcode} 
+		            />
                 </div>
                 <div 
-		                className="address-button" 
-		                onClick={handleSearchPostcode}
-		            >우편번호 찾기</div>
+		            className="address-button" 
+		            onClick={handleSearchPostcode}
+		        >우편번호 찾기</div>
             </div>
             <div className="address-section">
                 <div className="address-base">
                     <input 
-		                    className="address-input-base" 
-		                    value={address} 
-		                />
+		                className="address-input-base" 
+		                value={address} 
+		            />
                 </div>
             </div>
             <div className="address-section">
                 <div className="address-detail">
-                    
                     <input 
-		                    className="address-input-detail" 
-			                  value={addressDetail} 
-			                  onChange={handleAddressDetailChange}
-                              type="text" placeholder="상세주소를 입력하세요"
-		                />
+		                className="address-input-detail" 
+			                value={addressDetail} 
+			                onChange={handleAddressDetailChange}
+                            type="text" placeholder="상세주소를 입력하세요"
+		            />
                 </div>
                 <div 
-		                className="address-button"
-					          onClick={handleSave}
-		            >
-                    저장하기
+		            className="address-button"
+					    onClick={() => handleSave(zipcode, address, addressDetail)}
+		        >
+                저장하기
                 </div>
             </div>
         </div>

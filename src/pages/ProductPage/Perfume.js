@@ -1,11 +1,16 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import Banner from "./Banner";
 import ProductCard from "./ProductCard";
 import "../../styles/ProductPage.css";
 import Paymodal from './../../components/PayModal';
+import { useCookies } from "react-cookie";
+import axios from "axios";
 
 const Perfume = () => {
-    const products=[
+    const [products, setProducts] = useState([]);
+        
+        
+/*
         {
             id: 1,
             name: "퍼퓸",
@@ -129,20 +134,11 @@ const Perfume = () => {
         },
 
     ];
+*/
 
     const [selectedProduct, setSelectedProduct]=useState(null);
     const [isModalOpen, setIsModalOpen]=useState(false);
-
-    const handleCardClick = (product) => {
-        setSelectedProduct(product);
-        setIsModalOpen(true);
-    };
-
-    const handleCloseModal = () => {
-        setSelectedProduct(null);
-        setIsModalOpen(false);
-    };
-
+    const [cookies] = useCookies(["accessToken"]);
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 5;
     const totalPages = Math.ceil(products.length/itemsPerPage);
@@ -151,9 +147,41 @@ const Perfume = () => {
     const endIndex = startIndex + itemsPerPage;
     const currentProducts = products.slice(startIndex, endIndex);
     
+    
+
+    const handleCardClick = (product) => {
+        setSelectedProduct(product);
+        if(typeof cookies.accessToken !== "string"){
+            alert("로그인이 필요합니다.");
+            return;
+        }
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setSelectedProduct(null);
+        setIsModalOpen(false);
+    };
     const handlePageChange = (pageNumber)=>{
         setCurrentPage(pageNumber);
     };
+
+    useEffect(() => {
+        axios
+            .get("/categories/3/items", {
+                headers: {
+                    accept: "*/*",
+                },
+            })
+            .then((response)=>{
+                setProducts(response.data.result);
+            })
+            .catch((err)=>{
+                console.log("CATEGORY API 요청 실패", err);
+            });
+    }, []);
+
+    
 
     return(
         <div>

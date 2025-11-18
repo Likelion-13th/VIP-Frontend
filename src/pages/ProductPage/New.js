@@ -1,11 +1,15 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Banner from "./Banner";
 import ProductCard from "./ProductCard";
 import "../../styles/ProductPage.css";
 import PayModal from "../../components/PayModal";
+import { useCookies } from "react-cookie";
+import axios from "axios";
 
 const New = () => {
-    const products=[
+    const [products, setProducts] = useState([]);
+
+    /*
         {
             id: 1,
             name: "퍼퓸",
@@ -50,11 +54,18 @@ const New = () => {
 
     ];
 
+    */
+
     const [selectedProduct, setSelectedProduct]=useState(null);
     const [isModalOpen, setIsModalOpen]=useState(false);
+    const [cookies] = useCookies(["accessToken"]);
 
     const handleCardClick = (product) => {
         setSelectedProduct(product);
+        if(typeof cookies.accessToken !== "string"){
+            alert("로그인이 필요합니다.");
+            return;
+        }
         setIsModalOpen(true);
     };
 
@@ -74,7 +85,22 @@ const New = () => {
     const handlePageChange = (pageNumber)=>{
         setCurrentPage(pageNumber);
             };
-
+    
+    useEffect(() => {
+        axios
+            .get("/categories/1/items", {
+                headers: {
+                    accept: "*/*",
+                },
+            })
+            .then((response)=>{
+                setProducts(response.data.result);
+            })
+            .catch((err)=>{
+                console.log("CATEGORY API 요청 실패", err);
+            });
+    }, []);
+    
     return(
         <div>
             <Banner title="New"imagePath={"/banner_diffuser.jpg"}/>

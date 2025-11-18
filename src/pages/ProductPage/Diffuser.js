@@ -1,11 +1,19 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import Banner from "./Banner";
 import ProductCard from "./ProductCard";
 import "../../styles/ProductPage.css";
 import PayModal from "../../components/PayModal";
+import axios from 'axios';
+import { useCookies } from "react-cookie";
+
 
 const Diffuser = () => {
+
+    const [products, setProducts] = useState([]);
+    /*
     const products=[
+
+        // 더미데이터였던 것
         {
             id: 1,
             name: "디퓨저",
@@ -50,16 +58,28 @@ const Diffuser = () => {
             imagePath: "/image/diffuser_5.png",
             isNew: false,
             
-        },
+        }, 
         
 
     ];
+    */
 
     const [selectedProduct, setSelectedProduct]=useState(null);
     const [isModalOpen, setIsModalOpen]=useState(false);
 
+    
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 5;
+    const totalPages = Math.ceil(products.length/itemsPerPage);
+    const [cookies] = useCookies(["accessToken"]);
+
     const handleCardClick = (product) => {
         setSelectedProduct(product);
+        if(typeof cookies.accessToken !== "string"){
+            alert("로그인이 필요합니다.");
+            return;
+        }
         setIsModalOpen(true);
     };
 
@@ -68,17 +88,29 @@ const Diffuser = () => {
         setIsModalOpen(false);
     };
 
-    const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 5;
-    const totalPages = Math.ceil(products.length/itemsPerPage);
+    const handlePageChange = (pageNumber)=>{
+        setCurrentPage(pageNumber);
+    };
+
+    useEffect(() => {
+        axios
+            .get("/categories/2/items", {
+                headers: {
+                    accept: "*/*",
+                },
+            })
+            .then((response)=>{
+                setProducts(response.data.result);
+            })
+            .catch((err)=>{
+                console.log("CATEGORY API 요청 실패", err);
+            });
+    }, []);
 
     const startIndex= (currentPage-1)*itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const currentProducts = products.slice(startIndex, endIndex);
-
-    const handlePageChange = (pageNumber)=>{
-        setCurrentPage(pageNumber);
-    };
+    
 
     return(
         <div>
@@ -118,7 +150,8 @@ const Diffuser = () => {
                     )}
                 </div>
             </div>
-            {isModalOpen && (<PayModal product={selectedProduct} onClose={handleCloseModal}/>
+            {isModalOpen && (
+                <PayModal product={selectedProduct} onClose={handleCloseModal}/>
             )}
         </div>
     );
