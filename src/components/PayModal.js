@@ -41,8 +41,8 @@ const PayModal = ({product, onClose}) => {
     }, [quantity, mileageToUse, product.price]);
     
     useEffect(() => {
-        axios.
-            get("/users/profile", {
+        axios
+            .get("/users/profile", {
                 headers: {
                     accept: "*/*",
                     Authorization: `Bearer ${cookies.accessToken}`,
